@@ -3,6 +3,7 @@
 ## Team members
 * Saif Ali 1936419
 * Valeria Avino 1905974
+* Luca Nudo 2027873
 * Team Members, please add your details too
 
 The repository contains the submission of the third homework for the course "Algorithmic Methods of Data Mining", for the Group #8.
