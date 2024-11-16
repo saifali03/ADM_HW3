@@ -14,3 +14,9 @@ The repository contains the submission of the third homework for the course "Alg
     > Contatins functions relating to scraping urls of the Michelin restaurants, fetching their HTML structure from the [Michelin Guide website](https://guide.michelin.com/en/it/restaurants/), and saving the HTML structure to the local machine.
 * __`myparser.py`__
   > Contatins functions relating to scraping relevant information from HTML saved into local machine and preparing a .csv file.
+* __`vocabulary.csv`__
+  > Contains vocabulary words obtained by preprocessing the description column, and their associated term_id
+* __`inverted_index.json`__
+  > Contains a dictionary where the entries are the term_id s of the vocabulary ad the keys are the list of document IDs where that term appears.
+* __`tf_idf_inverted_index.json`__
+  > Contains a new dictionary where each entry is a term, and the value is a list of tuples containing document IDs and TF-IDF scores.
