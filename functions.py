@@ -236,3 +236,155 @@ def doc_vectors(data, vocabulary, tf_idf_inverted_index):
             D[term_id_int, doc_id] = score
 
     return D
+
+
+###INSERT FUNCTIONS FOR QUESTION 3 
+
+
+
+def get_city(address):
+    """
+    Extracts the city from an address string.
+    
+    Args:
+    address (str): The address string.
+    
+    Returns:
+    str: The city name.
+    """
+    # Split the address string by commas and return the third last element - which is the city
+    return address.split(",")[-3].strip()
+
+def get_region_and_coordinates(city, API_KEY):
+    """
+    Extracts the region and coordinates (latitude, longitude) for a given city in Italy.
+    
+    Args:
+    city (str): The city name.
+    API_KEY (str): The Google Maps API key.
+    
+    Returns:
+    tuple: A tuple containing the region and coordinates (latitude, longitude).
+    """
+    # Get geocode data for the city
+    geocode_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={city.replace(' ', '+')},+Italy&key={API_KEY}"
+    # Get the response
+    response = requests.get(geocode_url).json()
+    
+    # Extract region from address components
+    region = None
+    # Check if the response status is OK
+    if response['status'] == 'OK':
+        # Iterate over the address components
+        for component in response['results'][0]['address_components']:
+            # Check if the component type is 'administrative_area_level_1' - it is where the region is stored
+            if 'administrative_area_level_1' in component['types']:
+                # Extract the region name
+                region = component['long_name']
+                break
+    
+    # Extract coordinates given the region
+    if region:
+        # Get geocode data for the region
+        region_geocode_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={region.replace(' ', '+')},+Italy&key={API_KEY}"
+        # Get the response
+        region_response = requests.get(region_geocode_url).json()
+        # Check if the response status is OK
+        if region_response['status'] == 'OK':
+            # Extract latitude and longitude
+            lat = region_response['results'][0]['geometry']['location']['lat']
+            lng = region_response['results'][0]['geometry']['location']['lng']
+            # Return the region and coordinates
+            return (region, lat, lng)
+    return (None, None, None)
+
+def get_coordinates(address, API_KEY):
+    """
+    Extracts the coordinates (latitude, longitude) for a given address.
+    
+    Args:
+    address (str): The address string.
+    API_KEY (str): The Google Maps API key.
+    
+    Returns:
+    tuple: A tuple containing the latitude and longitude.
+    """
+    
+    # Get geocode data for the address
+    geocode_url = f"https://maps.googleapis.com/maps/api/geocode/json?address={address.replace(' ', '+')},&key={API_KEY}"
+    
+    # Get the response
+    response = requests.get(geocode_url).json()
+    # Extract coordinates if the response status is OK
+    if response['status'] == 'OK':
+        lat = response['results'][0]['geometry']['location']['lat']
+        lng = response['results'][0]['geometry']['location']['lng']
+        # Return the coordinates
+        return (lat, lng)
+    return (None, None)
+
+def make_map(dataset, output_filename):
+    """
+    Creates a map with regions encircled and markers for each restaurant in the dataset.
+    
+    Args:
+    dataset (pandas.DataFrame): The dataset containing restaurant information.
+    output_filename (str): The filename to save the map.
+    
+    Returns:
+    None
+    """
+    # Create a base map using Folium. location coordinates are for Rome (Central Italy)
+    italy_map = folium.Map(location=[41.8719, 12.5674], zoom_start=6)
+
+    # Add markers for each region
+    for _, row in dataset.iterrows():
+        # Add a circle around the region
+        folium.Circle(
+            # Use the region's latitude and longitude as the circle's center
+            location=[row['lat_region'], row['lng_region']],
+            radius=65000,  # Adjust radius as needed (in meters)
+            color=row["color_region"],  # Circle border color
+            fill=True, # Fill the circle with the fill color
+            fill_color=row["color_region"],  # Fill color of the circle
+            fill_opacity=0.01,  # the higher the value, the more opaque the circle
+            popup=f"{row['region']}", # Popup text when clicking on the circle
+            tooltip=f"{row['region']}", # Tooltip text when hovering over the circle
+        ).add_to(italy_map)
+
+    # Create a MarkerCluster object and add it to the map. It helps to cluster multiple markers together and render the plot neatly.
+    marker_cluster = MarkerCluster().add_to(italy_map)
+
+    # Add restaurant markers to the cluster
+    for _, row in dataset.iterrows():
+        # Add a marker for each restaurant
+        folium.Marker(
+            # Use the restaurant's latitude and longitude as the marker's location
+            location=[row['address_lat'], row['address_lng']],
+            # Add a popup with restaurant information
+            popup=f"<b>Name:</b> {row['restaurantName']}<br><b>Price Range:</b> {row['priceRange']}<br><b>Cuisine:</b> {row['cuisineType']} <br><b>Facilities:</b> {row['facilitiesServices']} <br><b>website:</b> {row['website'] if row['website'] else None}",
+            # Add a tooltip with the restaurant's name and cuisine type
+            tooltip=f"Name: {row['restaurantName']} <br> Cuisine Type: {row['cuisineType']}",
+            # Use a custom icon with the color based on the price range
+            icon=folium.Icon(color=row["color"], icon="cutlery", prefix="fa")
+        # Add the marker to the cluster
+        ).add_to(marker_cluster)
+
+    # Add a legend (custom HTML template) # generated with the help of Chat-GPT
+    legend_html = """
+    <div style="position: fixed; bottom: 50px; left: 50px; z-index: 1000; background-color: white; 
+                padding: 10px; border: 2px solid black; border-radius: 5px;">
+        <h4>Price Range Legend</h4>
+        <i style="background: green; width: 10px; height: 10px; display: inline-block;"></i> €<br>
+        <i style="background: yellow; width: 10px; height: 10px; display: inline-block;"></i> €€<br>
+        <i style="background: orange; width: 10px; height: 10px; display: inline-block;"></i> €€€<br>
+        <i style="background: red; width: 10px; height: 10px; display: inline-block;"></i> €€€€
+    </div>
+    """
+    # Add the legend to the map
+    italy_map.get_root().html.add_child(folium.Element(legend_html))
+
+    # Save the map
+    italy_map.save(output_filename)
+    print(f"Map saved to {output_filename}")
+    
