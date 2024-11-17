@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ce9d54b77e68810fd18378b8f65eeabd {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_ce9d54b77e68810fd18378b8f65eeabd" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ce9d54b77e68810fd18378b8f65eeabd = L.map(
+                "map_ce9d54b77e68810fd18378b8f65eeabd",
+                {
+                    center: [41.8719, 12.5674],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 6,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_1624270db4c45861066771aef57d1f61 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detectRetina": false, "maxNativeZoom": 19, "maxZoom": 19, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+        
+    
+            tile_layer_1624270db4c45861066771aef57d1f61.addTo(map_ce9d54b77e68810fd18378b8f65eeabd);
+        
+    
+            var marker_f3135d29e34fbc7372e4d0daba3ea418 = L.marker(
+                [45.3791667, 9.8995332],
+                {}
+            ).addTo(map_ce9d54b77e68810fd18378b8f65eeabd);
+        
+    
+            var icon_60b03e7b8fcb0c27b657fe286f487e7b = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cutlery", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_f3135d29e34fbc7372e4d0daba3ea418.setIcon(icon_60b03e7b8fcb0c27b657fe286f487e7b);
+        
+    
+        var popup_0420bf39b8ca03a21fab4364a8c8109e = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0bb0c0171d0d65566edd68f75843e10d = $(`<div id="html_0bb0c0171d0d65566edd68f75843e10d" style="width: 100.0%; height: 100.0%;">         <b>Saur</b><br>         via Filippo Turati 8<br>         Barco, Italy<br>         Price Range: €€<br>         Cuisine Type: Italian Contemporary         </div>`)[0];
+                popup_0420bf39b8ca03a21fab4364a8c8109e.setContent(html_0bb0c0171d0d65566edd68f75843e10d);
+            
+        
+
+        marker_f3135d29e34fbc7372e4d0daba3ea418.bindPopup(popup_0420bf39b8ca03a21fab4364a8c8109e)
+        ;
+
+        
+    
+    
+            var marker_98f6cf533adb824c39b373bf774a744d = L.marker(
+                [45.0677551, 7.6824892],
+                {}
+            ).addTo(map_ce9d54b77e68810fd18378b8f65eeabd);
+        
+    
+            var icon_d6706837a7581faf6cb6e50c99480804 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cutlery", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_98f6cf533adb824c39b373bf774a744d.setIcon(icon_d6706837a7581faf6cb6e50c99480804);
+        
+    
+        var popup_558d9176db010e045862e8892b6e9eab = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_0aef95d3036193a01f05533c79a88912 = $(`<div id="html_0aef95d3036193a01f05533c79a88912" style="width: 100.0%; height: 100.0%;">         <b>Razzo</b><br>         via Andrea Doria 17/f<br>         Turin, Italy<br>         Price Range: €€<br>         Cuisine Type: Modern Cuisine, Mediterranean Cuisine         </div>`)[0];
+                popup_558d9176db010e045862e8892b6e9eab.setContent(html_0aef95d3036193a01f05533c79a88912);
+            
+        
+
+        marker_98f6cf533adb824c39b373bf774a744d.bindPopup(popup_558d9176db010e045862e8892b6e9eab)
+        ;
+
+        
+    
+    
+            var marker_a56a0d2212bcbb5fc41a75e3a0f6350d = L.marker(
+                [45.8837277, 8.5390268],
+                {}
+            ).addTo(map_ce9d54b77e68810fd18378b8f65eeabd);
+        
+    
+            var icon_baa1459e65b6aa4544ffe03705420698 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cutlery", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_a56a0d2212bcbb5fc41a75e3a0f6350d.setIcon(icon_baa1459e65b6aa4544ffe03705420698);
+        
+    
+        var popup_8984f68aba214b1a985afdd19a488e05 = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_3f81a65dbde0203b5ba734f5a322968b = $(`<div id="html_3f81a65dbde0203b5ba734f5a322968b" style="width: 100.0%; height: 100.0%;">         <b>La Botte</b><br>         via Giuseppe Garibaldi 8<br>         Stresa, Italy<br>         Price Range: €€<br>         Cuisine Type: Modern Cuisine         </div>`)[0];
+                popup_8984f68aba214b1a985afdd19a488e05.setContent(html_3f81a65dbde0203b5ba734f5a322968b);
+            
+        
+
+        marker_a56a0d2212bcbb5fc41a75e3a0f6350d.bindPopup(popup_8984f68aba214b1a985afdd19a488e05)
+        ;
+
+        
+    
+    
+            var marker_06a60d836dc1aff25beade1804027e5e = L.marker(
+                [45.0677551, 7.6824892],
+                {}
+            ).addTo(map_ce9d54b77e68810fd18378b8f65eeabd);
+        
+    
+            var icon_4859f27c6be5b56f67aaaedb24c8dbbf = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "cutlery", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_06a60d836dc1aff25beade1804027e5e.setIcon(icon_4859f27c6be5b56f67aaaedb24c8dbbf);
+        
+    
+        var popup_4f3295cdb4dbfed3fe7451371acb617a = L.popup({"maxWidth": "100%"});
+
+        
+            
+                var html_1079666fef157cbc13d2e49462342981 = $(`<div id="html_1079666fef157cbc13d2e49462342981" style="width: 100.0%; height: 100.0%;">         <b>Piccolo Lord</b><br>         corso San Maurizio 69 bis/g<br>         Turin, Italy<br>         Price Range: €€<br>         Cuisine Type: Mediterranean Cuisine, Seasonal Cuisine         </div>`)[0];
+                popup_4f3295cdb4dbfed3fe7451371acb617a.setContent(html_1079666fef157cbc13d2e49462342981);
+            
+        
+
+        marker_06a60d836dc1aff25beade1804027e5e.bindPopup(popup_4f3295cdb4dbfed3fe7451371acb617a)
+        ;
+
+        
+    
+</script>
+</html>
