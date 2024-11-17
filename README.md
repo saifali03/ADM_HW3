@@ -20,3 +20,5 @@ The repository contains the submission of the third homework for the course "Alg
   > Contains a dictionary where the entries are the term_id s of the vocabulary ad the keys are the list of document IDs where that term appears.
 * __`tf_idf_inverted_index.json`__
   > Contains a new dictionary where each entry is a term, and the value is a list of tuples containing document IDs and TF-IDF scores.
+* __`functions.py`__
+* > Contains all the other functions used in the main notebook.
